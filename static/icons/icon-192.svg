@@ -1,0 +1,26 @@
+<svg width="192" height="192" viewBox="0 0 192 192" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle -->
+  <circle cx="96" cy="96" r="96" fill="#00d6a3"/>
+  
+  <!-- Blood Drop Shape -->
+  <path d="M96 40C96 40 130 70 130 100C130 118.225 113.225 135 96 135C78.775 135 62 118.225 62 100C62 70 96 40 96 40Z" 
+        fill="white"/>
+  
+  <!-- Inner Drop Highlight -->
+  <path d="M96 50C96 50 120 75 120 95C120 107.15 107.15 120 96 120C84.85 120 72 107.15 72 95C72 75 96 50 96 50Z" 
+        fill="#f8f9fa" opacity="0.3"/>
+  
+  <!-- Plus Symbol -->
+  <rect x="90" y="80" width="12" height="32" rx="2" fill="#00d6a3"/>
+  <rect x="82" y="88" width="28" height="12" rx="2" fill="#00d6a3"/>
+  
+  <!-- Glucose Meter Symbol -->
+  <rect x="108" y="145" width="24" height="16" rx="3" fill="white" opacity="0.8"/>
+  <rect x="112" y="149" width="16" height="8" rx="1" fill="#00d6a3"/>
+  <circle cx="130" cy="153" r="2" fill="white"/>
+  
+  <!-- Text -->
+  <text x="96" y="175" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="white">
+    GLICELIVRE
+  </text>
+</svg>

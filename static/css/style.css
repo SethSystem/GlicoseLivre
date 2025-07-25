@@ -1,0 +1,261 @@
+/* Glicelivre Custom Styles */
+:root {
+    --primary-color: #00d6a3;
+    --secondary-color: #6c757d;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --success-color: #28a745;
+    --dark-bg: #111;
+    --card-bg: #222;
+    --text-light: #fff;
+    --text-muted: #adb5bd;
+}
+
+/* Dark Theme */
+.dark-theme {
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+    min-height: 100vh;
+}
+
+.dark-theme .card {
+    background-color: var(--card-bg);
+    border: 1px solid #333;
+    color: var(--text-light);
+}
+
+.dark-theme .card-header {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid #333;
+}
+
+.dark-theme .form-control,
+.dark-theme .form-select {
+    background-color: #333;
+    border-color: #444;
+    color: var(--text-light);
+}
+
+.dark-theme .form-control:focus,
+.dark-theme .form-select:focus {
+    background-color: #333;
+    border-color: var(--primary-color);
+    color: var(--text-light);
+    box-shadow: 0 0 0 0.2rem rgba(0, 214, 163, 0.25);
+}
+
+.dark-theme .form-control::placeholder {
+    color: var(--text-muted);
+}
+
+.dark-theme .list-group-item {
+    background-color: var(--card-bg);
+    border-color: #333;
+    color: var(--text-light);
+}
+
+/* Custom Components */
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #000;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background-color: #00c294;
+    border-color: #00c294;
+    color: #000;
+}
+
+/* Status Display */
+.status-display {
+    padding: 15px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 1.2em;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.status-low {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.status-normal {
+    background-color: var(--success-color);
+    color: white;
+}
+
+.status-high {
+    background-color: var(--warning-color);
+    color: #000;
+}
+
+.status-critical {
+    background-color: #8b0000;
+    color: white;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+/* Statistics */
+.stat-item {
+    padding: 10px;
+}
+
+.stat-number {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.stat-label {
+    font-size: 0.8em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+/* History Items */
+.history-item {
+    padding: 15px;
+    border-left: 4px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.history-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.history-item.glucose-low {
+    border-left-color: var(--danger-color);
+}
+
+.history-item.glucose-normal {
+    border-left-color: var(--success-color);
+}
+
+.history-item.glucose-high {
+    border-left-color: var(--warning-color);
+}
+
+.history-item.glucose-critical {
+    border-left-color: #8b0000;
+}
+
+.history-meta {
+    font-size: 0.9em;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+}
+
+.history-glucose {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.history-details {
+    font-size: 0.8em;
+    color: var(--text-muted);
+}
+
+.history-symptoms {
+    margin-top: 5px;
+}
+
+.symptom-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    background-color: rgba(108, 117, 125, 0.3);
+    border-radius: 12px;
+    font-size: 0.7em;
+    margin-right: 4px;
+    margin-bottom: 2px;
+}
+
+/* Chart Container */
+#glucose-chart {
+    max-height: 300px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container-fluid {
+        padding: 10px;
+    }
+    
+    .card {
+        margin-bottom: 15px;
+    }
+    
+    .stat-number {
+        font-size: 1.2em;
+    }
+    
+    .history-glucose {
+        font-size: 1.1em;
+    }
+}
+
+/* PWA Install Button */
+#install-btn {
+    transition: all 0.3s ease;
+}
+
+#install-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 214, 163, 0.3);
+}
+
+/* Loading States */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.spinner-border-sm {
+    width: 1rem;
+    height: 1rem;
+}
+
+/* Form Validation */
+.is-invalid {
+    border-color: var(--danger-color) !important;
+}
+
+.invalid-feedback {
+    color: var(--danger-color);
+    font-size: 0.875em;
+}
+
+/* Accessibility */
+.form-control:focus,
+.form-select:focus,
+.btn:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Print Styles */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    
+    body {
+        background: white !important;
+        color: black !important;
+    }
+    
+    .card {
+        border: 1px solid #ccc !important;
+        background: white !important;
+    }
+}

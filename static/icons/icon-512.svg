@@ -1,0 +1,88 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle -->
+  <circle cx="256" cy="256" r="256" fill="#00d6a3"/>
+  
+  <!-- Gradient Background -->
+  <defs>
+    <radialGradient id="bgGradient" cx="0.3" cy="0.3" r="0.8">
+      <stop offset="0%" stop-color="#00e6b8"/>
+      <stop offset="100%" stop-color="#00d6a3"/>
+    </radialGradient>
+    <radialGradient id="dropGradient" cx="0.3" cy="0.2" r="0.8">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="70%" stop-color="#f8f9fa"/>
+      <stop offset="100%" stop-color="#e9ecef"/>
+    </radialGradient>
+  </defs>
+  
+  <circle cx="256" cy="256" r="256" fill="url(#bgGradient)"/>
+  
+  <!-- Main Blood Drop Shape -->
+  <path d="M256 80C256 80 360 160 360 240C360 320 320 360 256 360C192 360 152 320 152 240C152 160 256 80 256 80Z" 
+        fill="url(#dropGradient)" stroke="#dee2e6" stroke-width="2"/>
+  
+  <!-- Inner Drop Highlight -->
+  <path d="M256 110C256 110 330 180 330 230C330 290 300 330 256 330C212 330 182 290 182 230C182 180 256 110 256 110Z" 
+        fill="rgba(255, 255, 255, 0.4)"/>
+  
+  <!-- Small Inner Highlight -->
+  <ellipse cx="280" cy="180" rx="20" ry="30" fill="rgba(255, 255, 255, 0.6)"/>
+  
+  <!-- Plus Symbol (Medical Cross) -->
+  <rect x="240" y="200" width="32" height="80" rx="6" fill="#00d6a3"/>
+  <rect x="208" y="232" width="96" height="32" rx="6" fill="#00d6a3"/>
+  
+  <!-- Inner Plus Highlight -->
+  <rect x="244" y="204" width="24" height="72" rx="4" fill="rgba(255, 255, 255, 0.3)"/>
+  <rect x="212" y="236" width="88" height="24" rx="4" fill="rgba(255, 255, 255, 0.3)"/>
+  
+  <!-- Glucose Meter Device -->
+  <rect x="320" y="390" width="80" height="50" rx="8" fill="white" opacity="0.9"/>
+  <rect x="330" y="400" width="60" height="30" rx="4" fill="#00d6a3"/>
+  <rect x="335" y="405" width="50" height="20" rx="2" fill="#f8f9fa"/>
+  
+  <!-- Display Screen -->
+  <rect x="340" y="408" width="32" height="14" rx="1" fill="#111"/>
+  <text x="356" y="418" text-anchor="middle" font-family="monospace" font-size="8" fill="#00d6a3">120</text>
+  
+  <!-- Test Strip -->
+  <rect x="405" y="395" width="4" height="20" rx="2" fill="#ffc107"/>
+  
+  <!-- Meter Button -->
+  <circle cx="385" cy="415" r="4" fill="#6c757d"/>
+  
+  <!-- Chart/Graph Icon -->
+  <g transform="translate(80, 380)">
+    <rect x="0" y="0" width="60" height="40" rx="4" fill="white" opacity="0.9"/>
+    <polyline points="5,30 15,20 25,25 35,15 45,10 55,5" 
+              stroke="#00d6a3" stroke-width="2" fill="none"/>
+    <circle cx="15" cy="20" r="2" fill="#28a745"/>
+    <circle cx="25" cy="25" r="2" fill="#ffc107"/>
+    <circle cx="35" cy="15" r="2" fill="#28a745"/>
+    <circle cx="45" cy="10" r="2" fill="#28a745"/>
+  </g>
+  
+  <!-- App Title -->
+  <text x="256" y="460" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" 
+        font-size="32" font-weight="700" fill="white">
+    GLICELIVRE
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="256" y="485" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" 
+        font-size="16" font-weight="400" fill="rgba(255, 255, 255, 0.8)">
+    Monitor de Glicemia
+  </text>
+  
+  <!-- Decorative Elements -->
+  <circle cx="120" cy="120" r="6" fill="rgba(255, 255, 255, 0.3)"/>
+  <circle cx="400" cy="100" r="4" fill="rgba(255, 255, 255, 0.2)"/>
+  <circle cx="450" cy="200" r="8" fill="rgba(255, 255, 255, 0.2)"/>
+  <circle cx="80" cy="300" r="5" fill="rgba(255, 255, 255, 0.25)"/>
+  
+  <!-- Heart Beat Line -->
+  <g transform="translate(60, 60)" opacity="0.3">
+    <polyline points="0,20 10,20 15,5 25,35 35,20 50,20" 
+              stroke="white" stroke-width="3" fill="none"/>
+  </g>
+</svg>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Glicelivre</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #111;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 { font-size: 2em; margin-bottom: 10px; }
+    input, button {
+      font-size: 1.2em;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 10px;
+    }
+    input { width: 80%; max-width: 200px; }
+    button { background: #00d6a3; color: #000; cursor: pointer; }
+    .status {
+      font-weight: bold;
+      font-size: 1.5em;
+      margin-top: 20px;
+      padding: 10px;
+      border-radius: 10px;
+    }
+    .baixo { background: #f00; }
+    .normal { background: #0c0; }
+    .alto { background: #f90; }
+    .historico {
+      margin-top: 30px;
+      text-align: left;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      background: #222;
+      padding: 15px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🩸 Glicelivre</h1>
+  <p>Informe sua glicemia (mg/dL):</p>
+  <input type="number" id="glicose" placeholder="Ex: 110" />
+  <br/>
+  <button onclick="registrar()">Registrar</button>
+  <div id="resultado" class="status"></div>
+
+  <div class="historico" id="historico">
+    <h2>📜 Histórico</h2>
+    <ul id="lista"></ul>
+  </div>
+
+  <audio id="som-alerta" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg" preload="auto"></audio>
+
+  <script>
+    function registrar() {
+      const input = document.getElementById('glicose');
+      const valor = parseInt(input.value);
+      const resultado = document.getElementById('resultado');
+      const som = document.getElementById('som-alerta');
+
+      if (isNaN(valor)) {
+        resultado.textContent = "Digite um valor válido!";
+        resultado.className = "status";
+        return;
+      }
+
+      let status = '';
+      if (valor < 70) {
+        status = 'baixo';
+        resultado.textContent = "⚠️ Glicose Baixa!";
+        som.play();
+      } else if (valor <= 140) {
+        status = 'normal';
+        resultado.textContent = "✅ Glicose Normal.";
+      } else {
+        status = 'alto';
+        resultado.textContent = "⚠️ Glicose Alta!";
+        som.play();
+      }
+
+      resultado.className = `status ${status}`;
+
+      const data = new Date().toLocaleString();
+      const historico = JSON.parse(localStorage.getItem('historico')) || [];
+      historico.unshift({ valor, data });
+      localStorage.setItem('historico', JSON.stringify(historico));
+      atualizarHistorico();
+      input.value = '';
+    }
+
+    function atualizarHistorico() {
+      const lista = document.getElementById('lista');
+      const historico = JSON.parse(localStorage.getItem('historico')) || [];
+      lista.innerHTML = '';
+      historico.slice(0, 20).forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = `${item.data} - ${item.valor} mg/dL`;
+        lista.appendChild(li);
+      });
+    }
+
+    atualizarHistorico();
+  </script>
+</body>
+</html>

@@ -524,19 +524,47 @@ const GlicelivreApp = {
         
         if (minutes && !isNaN(minutes) && parseInt(minutes) > 0) {
             const reminderTime = parseInt(minutes);
+            const delayMs = reminderTime * 60 * 1000;
             
             if ('Notification' in window && Notification.permission === 'granted') {
-                setTimeout(() => {
-                    new Notification('Glicelivre - Lembrete', {
-                        body: 'Hora de medir sua glicemia!',
-                        icon: '/static/icons/icon-192.svg',
-                        requireInteraction: true
-                    });
-                }, reminderTime * 60 * 1000);
+                // Use service worker for more reliable notification
+                if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+                    // We can't easily schedule a notification in the future purely client-side without a persistent tab
+                    // but we can at least try to use the SW registration to show it.
+                    setTimeout(() => {
+                        navigator.serviceWorker.ready.then(registration => {
+                            registration.showNotification('Glicelivre - Lembrete', {
+                                body: 'Hora de medir sua glicemia!',
+                                icon: '/static/icons/icon-192.svg',
+                                vibrate: [200, 100, 200],
+                                tag: 'glucose-reminder',
+                                renormalize: true
+                            });
+                            // Play sound if possible (browsers usually block audio from SW/background)
+                            this.playAlertSound();
+                        });
+                    }, delayMs);
+                } else {
+                    // Fallback to standard notification
+                    setTimeout(() => {
+                        new Notification('Glicelivre - Lembrete', {
+                            body: 'Hora de medir sua glicemia!',
+                            icon: '/static/icons/icon-192.svg',
+                            requireInteraction: true
+                        });
+                        this.playAlertSound();
+                    }, delayMs);
+                }
                 
                 this.showAlert(`Lembrete configurado para ${reminderTime} minutos!`, 'success');
+            } else if ('Notification' in window && Notification.permission !== 'denied') {
+                Notification.requestPermission().then(permission => {
+                    if (permission === 'granted') {
+                        this.setReminder();
+                    }
+                });
             } else {
-                this.showAlert('Notificações não estão disponíveis ou não foram permitidas.', 'warning');
+                this.showAlert('Notificações não estão disponíveis ou foram negadas.', 'warning');
             }
         }
     },
